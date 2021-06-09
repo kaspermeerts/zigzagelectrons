@@ -1,0 +1,456 @@
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[Sigma]x", "=", "50"}], ";", 
+  RowBox[{"\[Sigma]y", "=", "20"}], ";", 
+  RowBox[{"\[Sigma]z", "=", 
+   RowBox[{"5", "\[Sigma]y"}]}], ";", 
+  RowBox[{"b", "=", 
+   RowBox[{"6", "\[Sigma]y"}]}], ";", 
+  RowBox[{"p", "=", 
+   FractionBox["1", "10"]}], ";", 
+  RowBox[{"T", "=", "1*^4"}], ";"}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"6778a1b8-186c-44b1-bb01-6d74d58703dc"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Sigma]", "[", "t_", "]"}], ":=", 
+   RowBox[{"\[Sigma]y", 
+    SqrtBox[
+     RowBox[{"1", "+", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox["t", 
+         RowBox[{"2", 
+          SuperscriptBox["\[Sigma]y", "2"]}]], ")"}], "2"]}]]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"w", "=", 
+   RowBox[{"2", "\[Sigma]y"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"h", "=", 
+   RowBox[{"2", "\[Sigma]z"}]}], ";"}]}], "Input",
+ CellLabel->"In[7]:=",ExpressionUUID->"5377f20b-421b-4a32-ab6c-2ac0ff0ef5de"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"exp", "=", "\"\<double\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"type", "=", "\"\<zigzag\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"spin", "=", "\"\<xyz\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"distr", "=", "\"\<eq\>\""}], ";"}]}], "Input",
+ CellLabel->"In[85]:=",ExpressionUUID->"9f9a6317-dcd2-43b7-b7c0-5271066a91b4"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SetDirectory", "[", "\"\</tmp/\>\"", "]"}], ";"}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"d29e4aca-1230-45a9-9cdc-b31f38830687"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Monitor", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"data", "=", 
+      RowBox[{"{", "}"}]}], ";", 
+     RowBox[{"Do", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"AppendTo", "[", 
+        RowBox[{"data", ",", " ", 
+         RowBox[{"Import", "[", "i", "]"}]}], "]"}], "\[IndentingNewLine]", 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"FileNames", "[", "\"\<data/traj*dat\>\"", "]"}]}], "}"}]}], 
+      "]"}]}], ",", "i"}], "]"}], ";"}]], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"9500ab1a-3408-4736-b19e-082e183891ec"],
+
+Cell[BoxData[
+ RowBox[{"zigzagplot", "=", 
+  RowBox[{"ListPlot", "[", 
+   RowBox[{
+    RowBox[{"data", "\[LeftDoubleBracket]", 
+     RowBox[{
+      RowBox[{"RandomInteger", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", 
+          RowBox[{"Length", "[", "data", "]"}]}], "}"}], ",", "25"}], "]"}], 
+      ",", ";;", ",", 
+      RowBox[{"{", 
+       RowBox[{"2", ",", "3"}], "}"}]}], "\[RightDoubleBracket]"}], ",", 
+    RowBox[{"Joined", "\[Rule]", "True"}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "2"}], "\[Sigma]x"}], ",", 
+         RowBox[{
+          RowBox[{"p", " ", "T"}], "+", 
+          RowBox[{"2", "\[Sigma]x"}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "b"}], "-", 
+          RowBox[{"3", 
+           RowBox[{"\[Sigma]", "[", "T", "]"}]}]}], ",", 
+         RowBox[{
+          RowBox[{"+", "b"}], "+", 
+          RowBox[{"3", 
+           RowBox[{"\[Sigma]", "[", "T", "]"}]}]}]}], "}"}]}], "}"}]}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Minimal\>\""}], ",", 
+    RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "]"}]}]], "Input",
+ CellLabel->"In[83]:=",ExpressionUUID->"124a1b62-3b66-43cc-9e87-5d3af42f4eb6"],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{
+   "exp", "<>", "\"\<_\>\"", "<>", "type", "<>", "\"\<_\>\"", "<>", "spin", 
+    "<>", "\"\<_\>\"", "<>", "distr", "<>", "\"\<.svg\>\""}], ",", 
+   "zigzagplot"}], "]"}]], "Input",
+ CellLabel->"In[89]:=",ExpressionUUID->"aea6ee3a-b3e0-4639-9885-72999b7c9fed"],
+
+Cell[BoxData[
+ RowBox[{"schrodingerplot", "=", 
+  RowBox[{"ListPlot", "[", 
+   RowBox[{
+    RowBox[{"data", "\[LeftDoubleBracket]", 
+     RowBox[{";;", ",", ";;", ",", 
+      RowBox[{"{", 
+       RowBox[{"2", ",", "3"}], "}"}]}], "\[RightDoubleBracket]"}], ",", 
+    RowBox[{"Joined", "\[Rule]", "True"}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "2"}], "\[Sigma]x"}], ",", 
+         RowBox[{
+          RowBox[{"p", " ", "T"}], "+", 
+          RowBox[{"2", "\[Sigma]x"}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "b"}], "-", 
+          RowBox[{"2", 
+           RowBox[{"\[Sigma]", "[", "T", "]"}]}]}], ",", 
+         RowBox[{
+          RowBox[{"+", "b"}], "+", 
+          RowBox[{"2", 
+           RowBox[{"\[Sigma]", "[", "T", "]"}]}]}]}], "}"}]}], "}"}]}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Minimal\>\""}], ",", 
+    RowBox[{"AspectRatio", "\[Rule]", "1"}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}]}]], "Input",
+ CellLabel->"In[42]:=",ExpressionUUID->"dc2ea142-f8b2-488a-8aeb-1954209f7e8e"],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{
+   "exp", "<>", "\"\<_\>\"", "<>", "type", "<>", "\"\<_\>\"", "<>", "spin", 
+    "<>", "\"\<_\>\"", "<>", "distr", "<>", "\"\<.svg\>\""}], ",", 
+   "schrodingerplot"}], "]"}]], "Input",
+ CellLabel->"In[52]:=",ExpressionUUID->"1622d73d-2109-411b-b82f-b3411c7ff17c"],
+
+Cell[BoxData[
+ RowBox[{"observerplot", "=", 
+  RowBox[{"ListPlot", "[", 
+   RowBox[{
+    RowBox[{"data", "\[LeftDoubleBracket]", 
+     RowBox[{";;", ",", ";;", ",", 
+      RowBox[{"{", 
+       RowBox[{"3", ",", "4"}], "}"}]}], "\[RightDoubleBracket]"}], ",", 
+    RowBox[{"Joined", "\[Rule]", "True"}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Minimal\>\""}], ",", 
+    RowBox[{"Axes", "\[Rule]", "None"}], ",", 
+    RowBox[{"AspectRatio", "\[Rule]", "1"}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", "Black"}], ",", 
+    RowBox[{"Prolog", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"LightGray", ",", 
+       RowBox[{"Rectangle", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "b"}], "-", "w"}], ",", 
+           RowBox[{"-", "h"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "b"}], "+", "w"}], ",", 
+           RowBox[{"+", "h"}]}], "}"}]}], "]"}], ",", 
+       RowBox[{"Rectangle", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"+", "b"}], "-", "w"}], ",", 
+           RowBox[{"-", "h"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"+", "b"}], "+", "w"}], ",", 
+           RowBox[{"+", "h"}]}], "}"}]}], "]"}]}], "}"}]}]}], 
+   "]"}]}]], "Input",
+ CellLabel->"In[64]:=",ExpressionUUID->"0128e4e9-c912-46e0-90a7-a96685482037"],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{
+   "exp", "<>", "\"\<_\>\"", "<>", "type", "<>", "\"\<_\>\"", "<>", "spin", 
+    "<>", "\"\<_\>\"", "<>", "distr", "<>", "\"\<_observer.svg\>\""}], ",", 
+   "observerplot"}], "]"}]], "Input",
+ CellLabel->"In[65]:=",ExpressionUUID->"8834ae05-0caf-4b14-8add-636b1d2a5435"],
+
+Cell[BoxData[
+ RowBox[{"threedplot", "=", 
+  RowBox[{"Graphics3D", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Cuboid", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", 
+            RowBox[{
+             RowBox[{"+", "b"}], "-", "w"}], ",", 
+            RowBox[{"-", "h"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", 
+            RowBox[{
+             RowBox[{"+", "b"}], "+", "w"}], ",", 
+            RowBox[{"+", " ", "h"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"Cuboid", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", 
+            RowBox[{
+             RowBox[{"-", "b"}], "-", 
+             RowBox[{"2", "\[Sigma]y"}]}], ",", 
+            RowBox[{
+             RowBox[{"-", "2"}], "\[Sigma]z"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", 
+            RowBox[{
+             RowBox[{"-", "b"}], "+", 
+             RowBox[{"2", "\[Sigma]y"}]}], ",", 
+            RowBox[{
+             RowBox[{"+", "2"}], "\[Sigma]z"}]}], "}"}]}], "]"}]}], "}"}], 
+      ",", 
+      RowBox[{"Line", "@", 
+       RowBox[{"data", "\[LeftDoubleBracket]", 
+        RowBox[{
+         RowBox[{"RandomInteger", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"1", ",", 
+             RowBox[{"Length", "[", "data", "]"}]}], "}"}], ",", "25"}], 
+          "]"}], ",", ";;", ",", 
+         RowBox[{"{", 
+          RowBox[{"2", ",", "3", ",", "4"}], "}"}]}], 
+        "\[RightDoubleBracket]"}]}]}], "}"}], ",", 
+    RowBox[{"AxesLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<x\>\"", ",", "\"\<y\>\"", ",", "\"\<z\>\""}], "}"}]}], ",", 
+    RowBox[{"BoxRatios", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "1", ",", "1"}], "}"}]}], ",", 
+    RowBox[{"SphericalRegion", "\[Rule]", "False"}], ",", 
+    RowBox[{"ViewPoint", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", " ", 
+       RowBox[{"-", 
+        FractionBox["1", "4"]}], ",", " ", 
+       FractionBox["1", "8"]}], "}"}]}], ",", 
+    RowBox[{"Lighting", "->", 
+     RowBox[{"{", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Ambient\>\"", ",", " ", "LightBlue"}], "}"}], "}"}]}]}], 
+   "]"}]}]], "Input",
+ CellLabel->"In[5]:=",ExpressionUUID->"5bc8ba82-4a1d-45f7-aaf6-3cf3fce55e23"],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{
+   "exp", "<>", "\"\<_\>\"", "<>", "type", "<>", "\"\<_\>\"", "<>", "spin", 
+    "<>", "\"\<_\>\"", "<>", "distr", "<>", "\"\<_3d.png\>\""}], ",", 
+   "threedplot"}], 
+  "]"}]], "Input",ExpressionUUID->"d02fcafe-432e-4530-80cd-044b44be92b2"],
+
+Cell[BoxData[
+ RowBox[{"pattern", "=", 
+  RowBox[{"ListPlot", "[", 
+   RowBox[{
+    RowBox[{"data", "\[LeftDoubleBracket]", 
+     RowBox[{";;", ",", 
+      RowBox[{"-", "1"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"3", ",", "4"}], "}"}]}], "\[RightDoubleBracket]"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<MinimalAxes\>\""}], ",", " ", 
+    RowBox[{"AxesLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<y\>\"", ",", "\"\<z\>\""}], "}"}]}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "b"}], "-", 
+          RowBox[{"3", 
+           RowBox[{"\[Sigma]", "[", "T", "]"}]}]}], ",", 
+         RowBox[{
+          RowBox[{"+", "b"}], "+", 
+          RowBox[{"3", 
+           RowBox[{"\[Sigma]", "[", "T", "]"}]}]}]}], "}"}], ",", 
+       "Automatic"}], "}"}]}]}], "]"}]}]], "Input",
+ CellLabel->"In[16]:=",ExpressionUUID->"637c7924-8740-4fef-ad9a-f91db5a138ae"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ts", "=", 
+   RowBox[{"Flatten", "@", 
+    RowBox[{"data", "\[LeftDoubleBracket]", 
+     RowBox[{";;", ",", 
+      RowBox[{"-", "1"}], ",", 
+      RowBox[{"{", "1", "}"}]}], "\[RightDoubleBracket]"}]}]}], 
+  ";"}]], "Input",
+ CellLabel->"In[17]:=",ExpressionUUID->"65009e07-3b6b-4389-9688-89d75549e6e5"],
+
+Cell[BoxData[
+ RowBox[{"tsgram", "=", 
+  RowBox[{"Histogram", "[", 
+   RowBox[{"ts", ",", "\"\<Sturges\>\"", ",", 
+    RowBox[{"GridLines", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         FractionBox[
+          RowBox[{"p", " ", "T"}], 
+          RowBox[{"1", "+", "p"}]], ",", 
+         FractionBox[
+          RowBox[{"p", " ", "T"}], "p"]}], "}"}], ",", 
+       RowBox[{"{", "}"}]}], "}"}]}], ",", 
+    RowBox[{"AxesLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<t\>\"", ",", "None"}], "}"}]}], ",", 
+    RowBox[{"Ticks", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"Automatic", ",", "None"}], "}"}]}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"1.1", " ", "T"}]}], "}"}], ",", "All"}], "}"}]}], ",", 
+    RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "]"}]}]], "Input",
+ CellLabel->"In[18]:=",ExpressionUUID->"a1234289-49f2-4d59-80a4-d3da1e84787c"],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<arrivaltimes.pdf\>\"", ",", "tsgram"}], "]"}]], "Input",
+ CellLabel->
+  "In[167]:=",ExpressionUUID->"3241ee7e-322f-4e53-8deb-73864999e9ce"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"arrivals", "=", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"T", ",", 
+       RowBox[{"p", " ", "T"}]}], "}"}], "}"}], "~", "Join", "~", 
+    RowBox[{"data", "\[LeftDoubleBracket]", 
+     RowBox[{
+      RowBox[{";;", "3"}], ",", 
+      RowBox[{"-", "1"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "2"}], "}"}]}], "\[RightDoubleBracket]"}]}]}], ";", 
+  RowBox[{"arrivalplot", "=", 
+   RowBox[{"ListPlot", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"T", ",", 
+           RowBox[{"p", " ", "T"}]}], "}"}]}], "}"}], "}"}], "~", "Join", "~", 
+      RowBox[{"data", "\[LeftDoubleBracket]", 
+       RowBox[{
+        RowBox[{";;", "3"}], ",", ";;", ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2"}], "}"}]}], "\[RightDoubleBracket]"}]}], ",", 
+     RowBox[{"Joined", "\[Rule]", "True"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<t\>\"", ",", "\"\<x\>\""}], "}"}]}], ",", 
+     RowBox[{"GridLines", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"p", " ", "T"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"Ticks", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "T"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", 
+          RowBox[{"p", " ", "T"}]}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", 
+          RowBox[{"1.1", "T"}]}], "}"}], ",", "All"}], "}"}]}], ",", 
+     RowBox[{"AspectRatio", "\[Rule]", "1"}], ",", 
+     RowBox[{"Epilog", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"PointSize", "[", "Large", "]"}], ",", 
+        RowBox[{"MapIndexed", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"ColorData", "[", 
+              RowBox[{"97", ",", 
+               RowBox[{"First", "@", "#2"}]}], "]"}], ",", 
+             RowBox[{"Point", "[", "#1", "]"}]}], "}"}], "&"}], ",", 
+          "arrivals"}], "]"}]}], "}"}]}]}], "]"}]}]}]], "Input",
+ CellLabel->"In[19]:=",ExpressionUUID->"97a90852-8b2d-4730-b52c-5cff4901ba77"],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<arrivalplot.pdf\>\"", ",", "arrivalplot"}], "]"}]], "Input",
+ CellLabel->"In[202]:=",ExpressionUUID->"6a711c3b-0b0a-4b99-9dcf-8aee97852ba2"]
+},
+WindowSize->{909, 960},
+WindowMargins->{{Automatic, 61}, {-25, Automatic}},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+TaggingRules->{
+ "WelcomeScreenSettings" -> {"FEStarting" -> False}, "TryRealOnly" -> False},
+Magnification:>1. Inherited,
+FrontEndVersion->"12.2 for Linux x86 (64-bit) (December 12, 2020)",
+StyleDefinitions->"Default.nb",
+$CellContext`TrackCellChangeTimes -> False,
+ExpressionUUID->"8f17a951-3d40-47a5-8d7a-96758b9413f8"
+]
