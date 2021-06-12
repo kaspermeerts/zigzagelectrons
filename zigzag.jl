@@ -10,8 +10,7 @@ const σz = 5σy
 const px = 0.1
 const b = SA[0, 6σy, 0]
 const s = SA[1, 1, 1]/sqrt(3)
-const ti = 0.0
-const tf = 1e4
+const dist = 1e3
 const n_trajectories = 50
 
 @pure function ψG(t, x)
@@ -84,18 +83,17 @@ end
 	return xout, err
 end
 
-function trajectory(ti, tf, xi)
+function trajectory(xi)
 	h = 1.0
 
 	steps = 1
-	t = told = ti
+	t = told = 0.0
 	x = xold = xi
-	ts = [ti]
-	xs = [xi]
+	ts = [t]
+	xs = [x]
 	χ = rand(Bool)
 
-	while t < tf
-#	while x[1] < (tf - ti) * px
+	while x[1] < dist
 		if χ
 			r1 = max(+rate(t,x), 0.0)
 			xtry, err = odestep(t, h, x, vR)
@@ -138,9 +136,11 @@ function trajectory(ti, tf, xi)
 			h = probability_tolerance / r
 		end
 	end
-	
-	#x, _ = odestep(told, tf - told, xold, χ ? vR : vL)
-	#t = tf
+
+	dt = (dist - xold[1]) / ((χ ? vR(told,xold) : vL(told, xold))[1])
+
+	x, _ = odestep(told, dt,  xold, χ ? vR : vL)
+	t = told + dt
 	push!(ts, t)
 	push!(xs, x)
 
@@ -152,7 +152,7 @@ foreach(rm, filter(
 	file -> startswith(file, "traj") && endswith(file, ".dat"),
 	readdir())
 )
-println(rand(["Allons-y", "Поехали","Lad os gå"]))
+println(rand(["Allons-y", "Поехали", "Lad os gå"]))
 trajectories = Threads.Atomic{Int}(0)
 
 Threads.@threads for i in 1:n_trajectories
@@ -164,7 +164,7 @@ Threads.@threads for i in 1:n_trajectories
 	else
 		xi = SVector{3}(+b + δ)
 	end
-	ts, xs, steps = trajectory(ti, tf, xi)
+	ts, xs, steps = trajectory(xi)
 	open("traj$i.dat", "w") do io
 		for i in 1:length(ts)
 			println(io, ts[i], '\t', xs[i][1], '\t', xs[i][2], '\t', xs[i][3])
