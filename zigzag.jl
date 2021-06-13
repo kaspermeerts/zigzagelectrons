@@ -148,12 +148,15 @@ function trajectory(xi)
 end
 
 cd("/tmp/data")
-foreach(rm, filter(
-	file -> startswith(file, "traj") && endswith(file, ".dat"),
-	readdir())
+foreach(rm,
+	filter(
+		endswith(".dat"),
+		readdir()
+	)
 )
 println(rand(["Allons-y", "Поехали", "Lad os gå"]))
 trajectories = Threads.Atomic{Int}(0)
+arrival_coordinates = Vector{SVector{4,Float64}}(undef, n_trajectories)
 
 Threads.@threads for i in 1:n_trajectories
 
@@ -170,7 +173,14 @@ Threads.@threads for i in 1:n_trajectories
 			println(io, ts[i], '\t', xs[i][1], '\t', xs[i][2], '\t', xs[i][3])
 		end
 	end
+	arrival_coordinates[i] = [ts[end]; xs[end]]
 	
 	Threads.atomic_add!(trajectories, 1)
 	print("\r$(trajectories[]) / $n_trajectories")
 end
+open("arrival_coordinates.dat", "w") do io
+	for coord in arrival_coordinates
+		println(io, coord[1], '\t', coord[2], '\t', coord[3], '\t', coord[4])
+	end
+end
+

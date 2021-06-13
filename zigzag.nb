@@ -10,7 +10,7 @@ Cell[BoxData[
   RowBox[{"p", "=", 
    FractionBox["1", "10"]}], ";", 
   RowBox[{"T", "=", "1*^4"}], ";"}]], "Input",
- CellLabel->"In[6]:=",ExpressionUUID->"6778a1b8-186c-44b1-bb01-6d74d58703dc"],
+ CellLabel->"In[7]:=",ExpressionUUID->"6778a1b8-186c-44b1-bb01-6d74d58703dc"],
 
 Cell[BoxData[{
  RowBox[{
@@ -31,7 +31,7 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"h", "=", 
    RowBox[{"2", "\[Sigma]z"}]}], ";"}]}], "Input",
- CellLabel->"In[7]:=",ExpressionUUID->"5377f20b-421b-4a32-ab6c-2ac0ff0ef5de"],
+ CellLabel->"In[8]:=",ExpressionUUID->"5377f20b-421b-4a32-ab6c-2ac0ff0ef5de"],
 
 Cell[BoxData[{
  RowBox[{
@@ -47,7 +47,7 @@ Cell[BoxData[{
 Cell[BoxData[
  RowBox[{
   RowBox[{"SetDirectory", "[", "\"\</tmp/\>\"", "]"}], ";"}]], "Input",
- CellLabel->"In[3]:=",ExpressionUUID->"d29e4aca-1230-45a9-9cdc-b31f38830687"],
+ CellLabel->"In[13]:=",ExpressionUUID->"d29e4aca-1230-45a9-9cdc-b31f38830687"],
 
 Cell[BoxData[
  RowBox[{
@@ -65,8 +65,15 @@ Cell[BoxData[
        RowBox[{"{", 
         RowBox[{"i", ",", 
          RowBox[{"FileNames", "[", "\"\<data/traj*dat\>\"", "]"}]}], "}"}]}], 
-      "]"}]}], ",", "i"}], "]"}], ";"}]], "Input",
- CellLabel->"In[4]:=",ExpressionUUID->"9500ab1a-3408-4736-b19e-082e183891ec"],
+      "]"}]}], ",", "i"}], "]"}], 
+  ";"}]], "Input",ExpressionUUID->"9500ab1a-3408-4736-b19e-082e183891ec"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"arrivalCoordinates", "=", 
+   RowBox[{"Import", "[", "\"\<data/arrival_coordinates.dat\>\"", "]"}]}], 
+  ";"}]], "Input",
+ CellLabel->"In[14]:=",ExpressionUUID->"927da412-8901-4bfb-be86-6ffe13c47c75"],
 
 Cell[BoxData[
  RowBox[{"zigzagplot", "=", 
@@ -105,7 +112,7 @@ Cell[BoxData[
            RowBox[{"\[Sigma]", "[", "T", "]"}]}]}]}], "}"}]}], "}"}]}], ",", 
     RowBox[{"PlotTheme", "\[Rule]", "\"\<Minimal\>\""}], ",", 
     RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "]"}]}]], "Input",
- CellLabel->"In[83]:=",ExpressionUUID->"124a1b62-3b66-43cc-9e87-5d3af42f4eb6"],
+ CellLabel->"In[6]:=",ExpressionUUID->"124a1b62-3b66-43cc-9e87-5d3af42f4eb6"],
 
 Cell[BoxData[
  RowBox[{"Export", "[", 
@@ -294,9 +301,8 @@ Cell[BoxData[
  RowBox[{"pattern", "=", 
   RowBox[{"ListPlot", "[", 
    RowBox[{
-    RowBox[{"data", "\[LeftDoubleBracket]", 
+    RowBox[{"arrivalCoordinates", "\[LeftDoubleBracket]", 
      RowBox[{";;", ",", 
-      RowBox[{"-", "1"}], ",", 
       RowBox[{"{", 
        RowBox[{"3", ",", "4"}], "}"}]}], "\[RightDoubleBracket]"}], ",", 
     RowBox[{"PlotTheme", "\[Rule]", "\"\<MinimalAxes\>\""}], ",", " ", 
@@ -317,23 +323,15 @@ Cell[BoxData[
           RowBox[{"3", 
            RowBox[{"\[Sigma]", "[", "T", "]"}]}]}]}], "}"}], ",", 
        "Automatic"}], "}"}]}]}], "]"}]}]], "Input",
- CellLabel->"In[16]:=",ExpressionUUID->"637c7924-8740-4fef-ad9a-f91db5a138ae"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"ts", "=", 
-   RowBox[{"Flatten", "@", 
-    RowBox[{"data", "\[LeftDoubleBracket]", 
-     RowBox[{";;", ",", 
-      RowBox[{"-", "1"}], ",", 
-      RowBox[{"{", "1", "}"}]}], "\[RightDoubleBracket]"}]}]}], 
-  ";"}]], "Input",
- CellLabel->"In[17]:=",ExpressionUUID->"65009e07-3b6b-4389-9688-89d75549e6e5"],
+ CellLabel->"In[18]:=",ExpressionUUID->"637c7924-8740-4fef-ad9a-f91db5a138ae"],
 
 Cell[BoxData[
  RowBox[{"tsgram", "=", 
   RowBox[{"Histogram", "[", 
-   RowBox[{"ts", ",", "\"\<Sturges\>\"", ",", 
+   RowBox[{
+    RowBox[{"arrivalCoordinates", "\[LeftDoubleBracket]", 
+     RowBox[{";;", ",", "1"}], "\[RightDoubleBracket]"}], ",", 
+    "\"\<Sturges\>\"", ",", 
     RowBox[{"GridLines", "\[Rule]", 
      RowBox[{"{", 
       RowBox[{
@@ -358,7 +356,7 @@ Cell[BoxData[
         RowBox[{"0", ",", 
          RowBox[{"1.1", " ", "T"}]}], "}"}], ",", "All"}], "}"}]}], ",", 
     RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "]"}]}]], "Input",
- CellLabel->"In[18]:=",ExpressionUUID->"a1234289-49f2-4d59-80a4-d3da1e84787c"],
+ CellLabel->"In[11]:=",ExpressionUUID->"a1234289-49f2-4d59-80a4-d3da1e84787c"],
 
 Cell[BoxData[
  RowBox[{"Export", "[", 
@@ -368,15 +366,22 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{
+  RowBox[{"subset", "=", 
+   RowBox[{"data", "\[LeftDoubleBracket]", 
+    RowBox[{"RandomInteger", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"1", ",", 
+        RowBox[{"Length", "[", "data", "]"}]}], "}"}], ",", "2"}], "]"}], 
+    "\[RightDoubleBracket]"}]}], ";", 
   RowBox[{"arrivals", "=", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{"{", 
       RowBox[{"T", ",", 
        RowBox[{"p", " ", "T"}]}], "}"}], "}"}], "~", "Join", "~", 
-    RowBox[{"data", "\[LeftDoubleBracket]", 
-     RowBox[{
-      RowBox[{";;", "3"}], ",", 
+    RowBox[{"subset", "\[LeftDoubleBracket]", 
+     RowBox[{";;", ",", 
       RowBox[{"-", "1"}], ",", 
       RowBox[{"{", 
        RowBox[{"1", ",", "2"}], "}"}]}], "\[RightDoubleBracket]"}]}]}], ";", 
@@ -392,9 +397,8 @@ Cell[BoxData[
          RowBox[{"{", 
           RowBox[{"T", ",", 
            RowBox[{"p", " ", "T"}]}], "}"}]}], "}"}], "}"}], "~", "Join", "~", 
-      RowBox[{"data", "\[LeftDoubleBracket]", 
-       RowBox[{
-        RowBox[{";;", "3"}], ",", ";;", ",", 
+      RowBox[{"subset", "\[LeftDoubleBracket]", 
+       RowBox[{";;", ",", ";;", ",", 
         RowBox[{"{", 
          RowBox[{"1", ",", "2"}], "}"}]}], "\[RightDoubleBracket]"}]}], ",", 
      RowBox[{"Joined", "\[Rule]", "True"}], ",", 
@@ -436,7 +440,7 @@ Cell[BoxData[
                RowBox[{"First", "@", "#2"}]}], "]"}], ",", 
              RowBox[{"Point", "[", "#1", "]"}]}], "}"}], "&"}], ",", 
           "arrivals"}], "]"}]}], "}"}]}]}], "]"}]}]}]], "Input",
- CellLabel->"In[19]:=",ExpressionUUID->"97a90852-8b2d-4730-b52c-5cff4901ba77"],
+ CellLabel->"In[26]:=",ExpressionUUID->"97a90852-8b2d-4730-b52c-5cff4901ba77"],
 
 Cell[BoxData[
  RowBox[{"Export", "[", 
@@ -444,13 +448,14 @@ Cell[BoxData[
  CellLabel->"In[202]:=",ExpressionUUID->"6a711c3b-0b0a-4b99-9dcf-8aee97852ba2"]
 },
 WindowSize->{909, 960},
-WindowMargins->{{Automatic, 61}, {-25, Automatic}},
+WindowMargins->{{Automatic, 0}, {0, Automatic}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TaggingRules->{
  "WelcomeScreenSettings" -> {"FEStarting" -> False}, "TryRealOnly" -> False},
+TrackCellChangeTimes->False,
 Magnification:>1. Inherited,
 FrontEndVersion->"12.2 for Linux x86 (64-bit) (December 12, 2020)",
 StyleDefinitions->"Default.nb",
-$CellContext`TrackCellChangeTimes -> False,
 ExpressionUUID->"8f17a951-3d40-47a5-8d7a-96758b9413f8"
 ]
+
