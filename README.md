@@ -15,6 +15,7 @@ For more information, check out our paper at [arxiv:2106.XXXXX [physics.comp-ph]
 
 * Julia
 * [StaticArrays](https://juliaarrays.github.io/StaticArrays.jl/stable/)
+* [SpecialFunctions](https://specialfunctions.juliamath.org/)
 * Mathematica for visualization
 
 ## Citation

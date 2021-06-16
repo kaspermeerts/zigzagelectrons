@@ -1,9 +1,11 @@
 import Base.@pure
 using LinearAlgebra
 using StaticArrays
+using SpecialFunctions
 
 const absolute_tolerance = 1e-12
 const probability_tolerance = 1/128
+const initially_equivariant = false
 const σy = 20
 const σx = 50
 const σz = 5σy
@@ -17,7 +19,7 @@ const n_trajectories = 50
 	σXt2 = σx^2 + im * t / 2
 	σYt2 = σy^2 + im * t / 2
 	σZt2 = σz^2 + im * t / 2
-	sqrt(σXt2 * σYt2 * σZt2) / (2*pi*σXt2*σYt2*σZt2)^(3/4) *
+	√(σXt2 * σYt2 * σZt2) / (2*pi*σXt2*σYt2*σZt2)^(3/4) *
 	exp( -1/4 * (
 		(x[1] - px*t)^2 / σXt2 +
 		 x[2]^2         / σYt2 +
@@ -137,7 +139,7 @@ function trajectory(xi)
 		end
 	end
 
-	dt = (dist - xold[1]) / ((χ ? vR(told,xold) : vL(told, xold))[1])
+	dt = (dist - xold[1]) / ((χ ? vR(told, xold) : vL(told, xold))[1])
 
 	x, _ = odestep(told, dt,  xold, χ ? vR : vL)
 	t = told + dt
@@ -160,7 +162,15 @@ arrival_coordinates = Vector{SVector{4,Float64}}(undef, n_trajectories)
 
 Threads.@threads for i in 1:n_trajectories
 
-	δ = [σx,σy,σz].*randn(3)
+	if initially_equivariant
+		δ = [σx,σy,σz].*randn(3)
+	else
+		# Distribute y-coordinates such that there is the same amount of
+		# probability between them
+		δuniform = ceil(i/2) / ((n_trajectories/2) + 1)
+		δy = -√2 * σy * erfcinv(2 * δuniform)
+		δ = SA[0.0, δy, 0.0]
+	end
 	
 	if iseven(i)
 		xi = SVector{3}(-b + δ)
