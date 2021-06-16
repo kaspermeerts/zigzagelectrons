@@ -1,4 +1,5 @@
-# Diffraction and interference with run-and-tumble particles
+# Zig-zag electrons
+## Diffraction and interference with run-and-tumble particles
 
 For more information, check out our paper at [arxiv:2106.XXXXX [physics.comp-ph]](https://arxiv.org/abs/2106.XXXXX)
 
