@@ -1,7 +1,7 @@
 # Zig-zag electrons
 ## Diffraction and interference with run-and-tumble particles
 
-For more information, check out our paper at [arxiv:2106.XXXXX [physics.comp-ph]](https://arxiv.org/abs/2106.XXXXX)
+For more information, check out our paper at [arxiv:2106.09568](https://arxiv.org/abs/2106.09568) [cond-mat.stat-mech]
 
 ## Example images
 
@@ -27,8 +27,8 @@ If you find this research useful, please consider citing
       title={Diffraction and interference with run-and-tumble particles}, 
       author={Christian Maes and Kasper Meerts and Ward Struyve},
       year={2021},
-      eprint={2106.XXXXX},
+      eprint={2106.09568},
       archivePrefix={arXiv},
-      primaryClass={physics.comp-ph}
+      primaryClass={cond-mat.stat-mech}
 }
 ```
